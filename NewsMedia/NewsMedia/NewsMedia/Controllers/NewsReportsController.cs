@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Authorization; //to add authentication
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NewsMedia.Data;
 
-namespace NewsMedia.Data
+namespace NewsMedia.Controllers
 {
     [Authorize]
     public class NewsReportsController : Controller
