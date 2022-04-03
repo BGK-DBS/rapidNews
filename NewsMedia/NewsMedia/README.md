@@ -1,8 +1,9 @@
-#News Report Creation
-Open Visual Studio
-Create new ASPO.NET Core Web App(Model-View-Controller)
+News Report Creation
+Open Visual Studio Create a new ASPO.NET Core Web App(Model-View-Controller)
+
 Name Given: NewsMedia
-Select NET 6.0 and Aunthentication Type:Individual Accounts.
+
+Select NET 6.0 and Authentication Type: Individual Accounts.
 
 #Create a Model
 
