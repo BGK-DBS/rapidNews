@@ -1,3 +1,17 @@
+#News Report Creation
+Open Visual Studio
+Create new ASPO.NET Core Web App(Model-View-Controller)
+Name Given: NewsMedia
+Select NET 6.0 and Aunthentication Type:Individual Accounts.
+
+#Create a Model
+
+#Scagolding
+
+#Data Validation
+
+
+
 # Report
 Rapid News Reports Web API
 
