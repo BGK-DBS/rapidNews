@@ -1,4 +1,4 @@
-#News Report Creation
+# News Report Creation
 Open Visual Studio Create a new ASPO.NET Core Web App(Model-View-Controller)
 
 Name Given: NewsMedia
