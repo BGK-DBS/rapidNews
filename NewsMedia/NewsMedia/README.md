@@ -11,6 +11,12 @@ Select NET 6.0 and Authentication Type: Individual Accounts.
 
 #Data Validation
 
+#DropDownList
+
+Post - Categories
+
+Get Public  Method
+
 
 
 # Report
