@@ -105,7 +105,9 @@ namespace NewsMedia.Controllers
 
         // GET: NewsReports/Create
         public IActionResult Create()
+
         {
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
             return View();
         }
 
@@ -124,6 +126,7 @@ namespace NewsMedia.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
             return View(newsReport);
         }
 
@@ -140,6 +143,7 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
             return View(newsReport);
         }
 
@@ -177,6 +181,7 @@ namespace NewsMedia.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
             return View(newsReport);
         }
 
@@ -212,6 +217,19 @@ namespace NewsMedia.Controllers
         private bool NewsReportExists(int id)
         {
             return _context.NewsReport.Any(e => e.Id == id);
+        }
+
+        public List<CategoryList> GetCategories()
+        {
+            var Categories = new List<CategoryList>();
+            Categories.Add(new CategoryList() { Id = 1, ListOfCategories = "National" });
+            Categories.Add(new CategoryList() { Id = 2, ListOfCategories = "International" });
+            Categories.Add(new CategoryList() { Id = 3, ListOfCategories = "Entretaiment" });
+            Categories.Add(new CategoryList() { Id = 4, ListOfCategories = "Sports" });
+
+            return Categories;
+
+
         }
     }
 }
