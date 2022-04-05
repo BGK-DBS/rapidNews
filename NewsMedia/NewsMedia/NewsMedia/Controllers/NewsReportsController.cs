@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewsMedia.Data;
+using NewsMedia.Services;
 
 namespace NewsMedia.Controllers
 {
@@ -15,10 +16,12 @@ namespace NewsMedia.Controllers
     public class NewsReportsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ReportsApiClient _reportsApiClient;
 
-        public NewsReportsController(ApplicationDbContext context)
+        public NewsReportsController(ApplicationDbContext context, ReportsApiClient reportsApiClient)
         {
             _context = context;
+            _reportsApiClient = reportsApiClient;
         }
 
         // GET: NewsReports
@@ -92,9 +95,14 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
+            // Amended to use webapi and remove local db call 
 
-            var newsReport = await _context.NewsReport
-                .FirstOrDefaultAsync(m => m.Id == id);
+            int ReportId = id.Value;
+            var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+
+            //var newsReport = await _context.NewsReport
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
             if (newsReport == null)
             {
                 return NotFound();
@@ -118,10 +126,16 @@ namespace NewsMedia.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 newsReport.CreationDate = DateTime.Now;
                 newsReport.CreationEmail = User.Identity.Name;
-                _context.Add(newsReport);
-                await _context.SaveChangesAsync();
+
+                // Amended to use webapi and remove local db call 
+                await _reportsApiClient.CreateReportItem(newsReport);
+                
+                //_context.Add(newsReport);
+                //await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(newsReport);
@@ -134,8 +148,11 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
+            // Amended to use webapi and remove local db call 
 
-            var newsReport = await _context.NewsReport.FindAsync(id);
+            int ReportId = id.Value;
+            var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+            //var newsReport = await _context.NewsReport.FindAsync(id);
             if (newsReport == null)
             {
                 return NotFound();
@@ -157,24 +174,26 @@ namespace NewsMedia.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    newsReport.CreationDate = DateTime.Now;
-                    newsReport.CreationEmail = User.Identity.Name;
-                    _context.Update(newsReport);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!NewsReportExists(newsReport.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                // Amended to use webapi and remove local db call & associated error handling 
+                await _reportsApiClient.UpdateReportItem(id, newsReport);
+                //try
+                //{
+                //    newsReport.CreationDate = DateTime.Now;
+                //    newsReport.CreationEmail = User.Identity.Name;
+                //    _context.Update(newsReport);
+                //    await _context.SaveChangesAsync();
+                //}
+                //catch (DbUpdateConcurrencyException)
+                //{
+                //    if (!NewsReportExists(newsReport.Id))
+                //    {
+                //        return NotFound();
+                //    }
+                //    else
+                //    {
+                //        throw;
+                //    }
+                //}
                 return RedirectToAction(nameof(Index));
             }
             return View(newsReport);
@@ -187,9 +206,12 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
+            // Amended to use webapi and remove local db call 
 
-            var newsReport = await _context.NewsReport
-                .FirstOrDefaultAsync(m => m.Id == id);
+            int ReportId = id.Value;
+            var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+            //var newsReport = await _context.NewsReport
+            //    .FirstOrDefaultAsync(m => m.Id == id);
             if (newsReport == null)
             {
                 return NotFound();
@@ -203,9 +225,12 @@ namespace NewsMedia.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var newsReport = await _context.NewsReport.FindAsync(id);
-            _context.NewsReport.Remove(newsReport);
-            await _context.SaveChangesAsync();
+            // Call delete service
+            await _reportsApiClient.DeleteReportItem(id);
+
+            //var newsReport = await _context.NewsReport.FindAsync(id);
+            //_context.NewsReport.Remove(newsReport);
+            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
