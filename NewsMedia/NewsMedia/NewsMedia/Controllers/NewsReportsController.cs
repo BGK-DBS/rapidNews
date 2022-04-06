@@ -142,9 +142,9 @@ namespace NewsMedia.Controllers
                 //await _context.SaveChangesAsync();
                 
                 return RedirectToAction(nameof(Index));
-            }
-            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
-            return View(newsReport);
+            //}
+            //ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
+            //return View(newsReport);
         }
 
         // GET: NewsReports/Edit/5
