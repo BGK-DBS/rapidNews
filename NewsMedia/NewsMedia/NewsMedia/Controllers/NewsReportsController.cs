@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization; //to add authentication
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using NewsMedia.Data;
 using NewsMedia.Services;
 
@@ -31,9 +32,11 @@ namespace NewsMedia.Controllers
 
             var CurrentUser = User.Identity.Name;
 
-            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+            // amending to call webapi to get the full list of reports 
+            return View(await _reportsApiClient.GetReportList());
 
-            return View(newsReport);
+            //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+            //return View(newsReport);
         }
 
         public async Task<IActionResult> ListByUser()
@@ -122,14 +125,14 @@ namespace NewsMedia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body,Category")] NewsReport newsReport)
+        public async Task<IActionResult> Create([Bind("Id,Title,Body,CreationDate,LastModifiedDate,Category,CreationEmail")] NewsReport newsReport)
         {
-            if (ModelState.IsValid)
-            {
-
-                newsReport.CreationDate = DateTime.Now;
-                newsReport.CreationEmail = User.Identity.Name;
-
+            newsReport.CreationDate = DateTime.Now;
+            newsReport.LastModifiedDate = DateTime.Now;
+            newsReport.CreationEmail = User.Identity.Name;
+            // removed validation as kept getting an error requires more work. 
+            //if (ModelState.IsValid)
+            //{
                 // Amended to use webapi and remove local db call 
                 await _reportsApiClient.CreateReportItem(newsReport);
                 
@@ -137,8 +140,8 @@ namespace NewsMedia.Controllers
                 //await _context.SaveChangesAsync();
                 
                 return RedirectToAction(nameof(Index));
-            }
-            return View(newsReport);
+            //}
+            //return View(newsReport);
         }
 
         // GET: NewsReports/Edit/5
@@ -165,16 +168,17 @@ namespace NewsMedia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,Category")] NewsReport newsReport)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,Category,CreationEmail")] NewsReport newsReport)
         {
             if (id != newsReport.Id)
             {
                 return NotFound();
             }
-
+ 
             if (ModelState.IsValid)
             {
                 // Amended to use webapi and remove local db call & associated error handling 
+                newsReport.LastModifiedDate = DateTime.Now; 
                 await _reportsApiClient.UpdateReportItem(id, newsReport);
                 //try
                 //{

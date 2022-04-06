@@ -13,8 +13,11 @@ namespace NewsMedia.Data
 
         public DateTime CreationDate { get; set; }
 
+        public DateTime LastModifiedDate { get; set; }
+
         public string Category { get; set; }
 
-        public string? CreationEmail { get; set; }
+        public string CreationEmail { get; set; }
+ 
     }
 }

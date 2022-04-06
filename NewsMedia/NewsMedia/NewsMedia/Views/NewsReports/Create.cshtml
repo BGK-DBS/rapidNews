@@ -1,4 +1,5 @@
-﻿@model NewsMedia.Data.NewsReport
+﻿@using Microsoft.AspNetCore.Identity
+@model NewsMedia.Data.NewsReport
 
 @{
     ViewData["Title"] = "Create";
@@ -27,6 +28,11 @@
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>*@
+@*            <div class="form-group">
+                <label asp-for="LastModifiedDate" class="control-label"></label>
+                <input asp-for="LastModifiedDate" class="form-control" />
+                <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
                 <input asp-for="Category" class="form-control" />
@@ -36,6 +42,10 @@
                 <label asp-for="CreationEmail" class="control-label"></label>
                 <input asp-for="CreationEmail" class="form-control" />
                 <span asp-validation-for="CreationEmail" class="text-danger"></span>
+            </div>*@
+@*            <div class="form-group">
+                <label class="control-label"></label>
+                <input asp-for="CreationEmail" value=@User.Identity.Name disabled />
             </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

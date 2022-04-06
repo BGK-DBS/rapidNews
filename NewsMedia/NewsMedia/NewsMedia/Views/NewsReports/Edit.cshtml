@@ -23,8 +23,15 @@
                 <input asp-for="Body" class="form-control" />
                 <span asp-validation-for="Body" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <input type="hidden" asp-for="CreationDate" />
+@*            <div class="form-group">
                 <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>*@
+            <input type="hidden" asp-for="LastModifiedDate" />
+            @*<div class="form-group">
+                <label asp-for="LastModifiedDate" class="control-label"></label>
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>*@
@@ -38,6 +45,7 @@
                 <input asp-for="CreationEmail" class="form-control" />
                 <span asp-validation-for="CreationEmail" class="text-danger"></span>
             </div>*@
+            <input type="hidden" asp-for="CreationEmail" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
