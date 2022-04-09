@@ -28,9 +28,15 @@ namespace NewsMedia.Controllers
         // GET: NewsReports
         public async Task<IActionResult> Index()
         {
+
+            //var CurrentUser = User.Identity.Name;
+
+          
+
             // return View(await _context.NewsReport.ToListAsync());
 
             var CurrentUser = User.Identity.Name;
+           
 
             // amending to call webapi to get the full list of reports 
             return View(await _reportsApiClient.GetReportList());

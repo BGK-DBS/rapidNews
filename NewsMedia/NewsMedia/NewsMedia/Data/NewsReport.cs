@@ -18,6 +18,8 @@ namespace NewsMedia.Data
         public string Category { get; set; }
 
         public string CreationEmail { get; set; }
- 
+
+       
+
     }
 }
