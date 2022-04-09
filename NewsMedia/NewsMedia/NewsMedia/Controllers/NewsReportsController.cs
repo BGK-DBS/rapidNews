@@ -28,21 +28,19 @@ namespace NewsMedia.Controllers
         // GET: NewsReports
         public async Task<IActionResult> Index()
         {
-
+            // return View(await _context.NewsReport.ToListAsync());
             //var CurrentUser = User.Identity.Name;
 
-          
-
-            // return View(await _context.NewsReport.ToListAsync());
 
             var CurrentUser = User.Identity.Name;
-           
+
 
             // amending to call webapi to get the full list of reports 
-            return View(await _reportsApiClient.GetReportList());
-
             //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
             //return View(newsReport);
+
+
+            return View(await _reportsApiClient.GetReportList());
         }
 
         public async Task<IActionResult> ListByUser()
@@ -71,22 +69,22 @@ namespace NewsMedia.Controllers
             return View(newsReport);
         }
 
-        public async Task<IActionResult> ListByCategory(string Category)
-        {
-            if (String.IsNullOrEmpty(Category))
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> ListByCategory(string Category)
+        //{
+        //    if (String.IsNullOrEmpty(Category))
+        //    {
+        //        return NotFound();
+        //    }
 
-            var newsReport = _context.NewsReport.Where(m => m.Category == Category);
+        //    var newsReport = _context.NewsReport.Where(m => m.Category == Category);
 
-            if (newsReport == null)
-            {
-                return NotFound();
-            }
+        //    if (newsReport == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(newsReport);
-        }
+        //    return View(newsReport);
+        //}
 
         public async Task<IActionResult> EditByUser()
         {
@@ -124,7 +122,7 @@ namespace NewsMedia.Controllers
         public IActionResult Create()
 
         {
-            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
             return View();
         }
 
@@ -143,11 +141,11 @@ namespace NewsMedia.Controllers
             //{
                 // Amended to use webapi and remove local db call 
                 await _reportsApiClient.CreateReportItem(newsReport);
-                
-                //_context.Add(newsReport);
-                //await _context.SaveChangesAsync();
-                
-                return RedirectToAction(nameof(Index));
+
+            //_context.Add(newsReport);
+            //await _context.SaveChangesAsync();
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");//create modi
+            return RedirectToAction(nameof(Index));
             //}
             //ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
             //return View(newsReport);
@@ -169,7 +167,7 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
-            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
             return View(newsReport);
         }
 
@@ -210,7 +208,7 @@ namespace NewsMedia.Controllers
                 //}
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
             return View(newsReport);
         }
 
@@ -254,15 +252,17 @@ namespace NewsMedia.Controllers
             return _context.NewsReport.Any(e => e.Id == id);
         }
 
-        public List<CategoryList> GetCategories()
+        public List<Category> GetCategories()
         {
-            var Categories = new List<CategoryList>();
-            Categories.Add(new CategoryList() { Id = 1, ListOfCategories = "National" });
-            Categories.Add(new CategoryList() { Id = 2, ListOfCategories = "International" });
-            Categories.Add(new CategoryList() { Id = 3, ListOfCategories = "Entretaiment" });
-            Categories.Add(new CategoryList() { Id = 4, ListOfCategories = "Sports" });
+            //var Categories = new List<CategoryList>();
+            //Categories.Add(new CategoryList() { Id = 1, ListOfCategories = "National" });
+            //Categories.Add(new CategoryList() { Id = 2, ListOfCategories = "International" });
+            //Categories.Add(new CategoryList() { Id = 3, ListOfCategories = "Entretaiment" });
+            //Categories.Add(new CategoryList() { Id = 4, ListOfCategories = "Sports" });
 
-            return Categories;
+            var categories = _context.Category.ToList();
+
+            return categories;
 
 
         }
