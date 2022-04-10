@@ -15,7 +15,7 @@ namespace NewsMedia.Data
 
         public DateTime LastModifiedDate { get; set; }
 
-        public string Category { get; set; }
+        public int Category { get; set; }
 
         public string CreationEmail { get; set; }
 
