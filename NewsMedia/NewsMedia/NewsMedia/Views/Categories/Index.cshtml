@@ -5,10 +5,14 @@
 }
 
 <h1>Index</h1>
-
+@*Added security check so that page can only accessed by logged in user*@
 <p>
-    <a asp-action="Create">Create New</a>
+     @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
+
 <table class="table">
     <thead>
         <tr>
