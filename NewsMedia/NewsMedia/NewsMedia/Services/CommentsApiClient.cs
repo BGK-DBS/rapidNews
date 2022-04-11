@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using NewsMedia.Data;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -31,6 +32,23 @@ namespace NewsMedia.Services
             return await Client.GetFromJsonAsync<IEnumerable<CommentItem>>("api/CommentItems");
         }
 
+        // BC - Call to Comments webapi for search with created by and/or reportid 
+        public async Task<IEnumerable<CommentItem>> GetCommentListByFilter(string createdBySearch, int reportIDSearch)
+
+        {
+            var searchQuery = new QueryBuilder();
+
+            if (!string.IsNullOrEmpty(createdBySearch))
+            {
+                searchQuery.Add("createdBySearch", createdBySearch.ToString());
+            }
+
+            if (reportIDSearch != 0)
+            {
+                searchQuery.Add("categoryId", reportIDSearch.ToString());
+            }
+            return await Client.GetFromJsonAsync<IEnumerable<CommentItem>>("api/CommentItems/FilterComments" + searchQuery);
+        }
 
         //public async Task<NewsReport> GetReportItem(int ReportId)
 

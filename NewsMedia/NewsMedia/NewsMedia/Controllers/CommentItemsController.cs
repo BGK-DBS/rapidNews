@@ -35,12 +35,14 @@ namespace NewsMedia.Controllers
             var CurrentUser = User.Identity.Name;
 
 
-            // amending to call webapi to get the full list of reports 
+            // amending to call webapi to get the full list of report - BC - amended to get only the logged in user comments
             //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
             //return View(newsReport);
 
+            var reportIDSearch = 0;
+            return View(await _commentsApiClient.GetCommentListByFilter(CurrentUser, reportIDSearch));
 
-            return View(await _commentsApiClient.GetCommentList());
+            //return View(await _commentsApiClient.GetCommentList());
         }
 
         //public async Task<IActionResult> ListByUser()

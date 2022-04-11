@@ -8,7 +8,7 @@
 
         public string CommentText { get; set; } = string.Empty;
 
-        public int ReportId { get; set; }   
+        public int ReportId { get; set; }   // BC change to int from string
 
         public DateTime DateCreated { get; set; }
     }
