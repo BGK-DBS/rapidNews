@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization; //to add authentication
+using Microsoft.AspNetCore.Authorization; //To control user access
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -25,51 +25,26 @@ namespace NewsMedia.Controllers
             _commentsApiClient = commentsApiClient;
         }
 
-        // GET: NewsReports
+        // GET: Comments
         public async Task<IActionResult> Index()
         {
-            // return View(await _context.NewsReport.ToListAsync());
-            //var CurrentUser = User.Identity.Name;
-
 
             var CurrentUser = User.Identity.Name;
-
-
-            // amending to call webapi to get the full list of report - BC - amended to get only the logged in user comments
-            //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
-            //return View(newsReport);
 
             var reportIDSearch = 0;
             return View(await _commentsApiClient.GetCommentListByFilter(CurrentUser, reportIDSearch));
 
-            //return View(await _commentsApiClient.GetCommentList());
         }
 
-        //public async Task<IActionResult> ListByUser()
-        //{
-        //    var CurrentUser = User.Identity.Name;
+        public async Task<IActionResult> CommentListByUser()
+        {
+            var CurrentUser = User.Identity.Name;
 
-        //    var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+            var commentItem = _context.CommentItem.Where(m => m.CreatedBy == CurrentUser);
 
-        //    return View(newsReport);
-        //}
+            return View(commentItem);
+        }
 
-        //public async Task<IActionResult> ListByTitle(string title)
-        //{
-        //    if (String.IsNullOrEmpty(title))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var newsReport = _context.NewsReport.Where(m => m.Title == title);
-
-        //    if (newsReport == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(newsReport);
-        //}
 
         ////public async Task<IActionResult> ListByCategory(string Category)
         ////{
@@ -97,73 +72,54 @@ namespace NewsMedia.Controllers
         //    return View(newsReport);
         //}
 
-        //// GET: NewsReports/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    // Amended to use webapi and remove local db call 
+        //// GET: CommentItems/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    int ReportId = id.Value;
-        //    var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+            var commentItem = await _context.CommentItem
+                    .FirstOrDefaultAsync(m => m.Id == id);
 
-        //    //var newsReport = await _context.NewsReport
-        //    //    .FirstOrDefaultAsync(m => m.Id == id);
+            if (commentItem == null)
+            {
+                return NotFound();
+            }
 
-        //    if (newsReport == null)
-        //    {
-        //        return NotFound();
-        //    }
+            return View(commentItem);
+            }
 
-        //    return View(newsReport);
-        //}
+        // GET: Comments/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        //// GET: NewsReports/Create
-        //public IActionResult Create()
+        // POST: Comments/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,CreatedBy,CommentText,ReportID,DateCeated")] CommentItem commentItem)
+        {
+            if (ModelState.IsValid)
+            {
+                await _commentsApiClient.CreateCommentItem(commentItem);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(commentItem);
+        }
 
-        //{
-        //    ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
-        //    return View();
-        //}
 
-        //// POST: NewsReports/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Title,Body,CreationDate,LastModifiedDate,Category,CreationEmail")] NewsReport newsReport)
-        //{
-        //    newsReport.CreationDate = DateTime.Now;
-        //    newsReport.LastModifiedDate = DateTime.Now;
-        //    newsReport.CreationEmail = User.Identity.Name;
-        //    // removed validation as kept getting an error requires more work. 
-        //    //if (ModelState.IsValid)
-        //    //{
-        //        // Amended to use webapi and remove local db call 
-        //        await _reportsApiClient.CreateReportItem(newsReport);
-
-        //    //_context.Add(newsReport);
-        //    //await _context.SaveChangesAsync();
-        //    ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");//create modi
-        //    return RedirectToAction(nameof(Index));
-        //    //}
-        //    //ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
-        //    //return View(newsReport);
-        //}
-
-        //// GET: NewsReports/Edit/5
+        // GET: Comments/Edit/5
         //public async Task<IActionResult> Edit(int? id)
         //{
-        //    if (id == null)
+        //   if (id == null)
         //    {
         //        return NotFound();
         //    }
-        //    // Amended to use webapi and remove local db call 
-
-        //    int ReportId = id.Value;
-        //    var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+        // 
+        //var commentItem = await _context.CommentItem.FindAsync(Id);
         //    //var newsReport = await _context.NewsReport.FindAsync(id);
         //    if (newsReport == null)
         //    {

@@ -85,7 +85,6 @@ namespace NewsMedia.Services
             await Client.DeleteAsync("api/ReportItems/" + reportID);
             return;
         }
-
     }
 }
 

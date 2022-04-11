@@ -32,6 +32,37 @@ namespace NewsMedia.Services
             return await Client.GetFromJsonAsync<IEnumerable<CommentItem>>("api/CommentItems");
         }
 
+        public async Task<CommentItem> GetCommentItem(int CommentId)
+
+        {
+            var CommentID = CommentId.ToString();
+            return await Client.GetFromJsonAsync<CommentItem>("api/CommentItems/" + CommentID);
+        }
+
+        public async Task CreateCommentItem(CommentItem commentItem)
+
+        {
+            await Client.PostAsJsonAsync<CommentItem>("api/CommentItems", commentItem);
+            return;
+        }
+
+        public async Task UpdateCommentItem(int CommentId, CommentItem commentItem)
+
+        {
+            var commentID = CommentId.ToString();
+            await Client.PutAsJsonAsync("api/CommentItems/" + commentID, commentItem);
+            return;
+
+        }
+
+        public async Task DeleteCommentItem(int CommentId)
+
+        {
+            var CommentID = CommentId.ToString();
+            await Client.DeleteAsync("api/CommentItems/" + CommentID);
+            return;
+        }
+
         // BC - Call to Comments webapi for search with created by and/or reportid 
         public async Task<IEnumerable<CommentItem>> GetCommentListByFilter(string createdBySearch, int reportIDSearch)
 
@@ -49,37 +80,6 @@ namespace NewsMedia.Services
             }
             return await Client.GetFromJsonAsync<IEnumerable<CommentItem>>("api/CommentItems/FilterComments" + searchQuery);
         }
-
-        //public async Task<NewsReport> GetReportItem(int ReportId)
-
-        //{
-        //    var reportID = ReportId.ToString();
-        //    return await Client.GetFromJsonAsync<NewsReport>("api/ReportItems/" + reportID);
-        //}
-
-        //public async Task CreateReportItem(NewsReport reportItem)
-
-        //{
-        //    await Client.PostAsJsonAsync<NewsReport>("api/ReportItems", reportItem);
-        //    return;
-        //}
-
-        //public async Task UpdateReportItem(int ReportId, NewsReport reportItem)
-
-        //{
-        //    var reportID = ReportId.ToString();
-        //    await Client.PutAsJsonAsync("api/ReportItems/" + reportID, reportItem);
-        //    return;
-
-        //}
-        //public async Task DeleteReportItem(int ReportId)
-
-        //{
-        //    var reportID = ReportId.ToString();
-        //    await Client.DeleteAsync("api/ReportItems/" + reportID);
-        //    return;
-        //}
-
     }
 }
 
