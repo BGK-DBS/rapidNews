@@ -34,13 +34,15 @@ namespace NewsMedia.Controllers
 
             var CurrentUser = User.Identity.Name;
 
+            // amending to call webapi to get list of reports  - filter by created by the logged in user not working so showing all reports
+            //var searchCategory = 0;
+            //var newsReports = await _reportsApiClient.GetReportListByFilter(CurrentUser, searchCategory);
+            var newsReports = await _reportsApiClient.GetReportList();
 
-            // amending to call webapi to get the full list of reports 
+            // commenting out code that uses local db to get list of logged in user 
             //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
-            //return View(newsReport);
 
-
-            return View(await _reportsApiClient.GetReportList());
+            return View(newsReports);
         }
 
         public async Task<IActionResult> ListByUser()
@@ -131,22 +133,23 @@ namespace NewsMedia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body,CreationDate,LastModifiedDate,Category,CreationEmail")] NewsReport newsReport)
+        public async Task<IActionResult> Create([Bind("Id,Title,Body,CategoryId")] NewsReport newsReport)
+  
         {
             newsReport.CreationDate = DateTime.Now;
             newsReport.LastModifiedDate = DateTime.Now;
             newsReport.CreationEmail = User.Identity.Name;
-            // removed validation as kept getting an error requires more work. 
-            //if (ModelState.IsValid)
-            //{
-                // Amended to use webapi and remove local db call 
-                await _reportsApiClient.CreateReportItem(newsReport);
+
+            // Amended to use webapi and remove local db call 
+
+            var tempnewsreport = newsReport;
+            await _reportsApiClient.CreateReportItem(newsReport);
 
             //_context.Add(newsReport);
             //await _context.SaveChangesAsync();
-            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");//create modi
+            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
             return RedirectToAction(nameof(Index));
-            //}
+
             //ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "ListOfCategories");
             //return View(newsReport);
         }
@@ -176,40 +179,18 @@ namespace NewsMedia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,Category,CreationEmail")] NewsReport newsReport)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,CategoryId,CreationEmail")] NewsReport newsReport)
         {
+            var checking10 = newsReport;
             if (id != newsReport.Id)
             {
                 return NotFound();
             }
  
-            if (ModelState.IsValid)
-            {
-                // Amended to use webapi and remove local db call & associated error handling 
-                newsReport.LastModifiedDate = DateTime.Now; 
+            // Amended to use webapi and remove local db call & associated error handling 
+                newsReport.LastModifiedDate = DateTime.Now;
                 await _reportsApiClient.UpdateReportItem(id, newsReport);
-                //try
-                //{
-                //    newsReport.CreationDate = DateTime.Now;
-                //    newsReport.CreationEmail = User.Identity.Name;
-                //    _context.Update(newsReport);
-                //    await _context.SaveChangesAsync();
-                //}
-                //catch (DbUpdateConcurrencyException)
-                //{
-                //    if (!NewsReportExists(newsReport.Id))
-                //    {
-                //        return NotFound();
-                //    }
-                //    else
-                //    {
-                //        throw;
-                //    }
-                //}
                 return RedirectToAction(nameof(Index));
-            }
-            ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
-            return View(newsReport);
         }
 
         // GET: NewsReports/Delete/5

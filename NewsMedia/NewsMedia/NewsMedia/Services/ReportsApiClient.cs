@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using NewsMedia.Data;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -38,6 +39,23 @@ namespace NewsMedia.Services
             return await Client.GetFromJsonAsync<IEnumerable<NewsReport>>("api/ReportItems");
         }
 
+        public async Task<IEnumerable<NewsReport>> GetReportListByFilter(string creationEmail, int searchCategory)
+
+        {
+            var searchQuery = new QueryBuilder();
+
+            if (!string.IsNullOrEmpty(creationEmail))
+            {
+                searchQuery.Add("creationEmail", creationEmail.ToString());
+            }
+
+            if (searchCategory != 0)
+            {
+                    searchQuery.Add("categoryId", searchCategory.ToString());
+            }
+
+            return await Client.GetFromJsonAsync<IEnumerable<NewsReport>>("api/ReportItems/FilterReports");
+        }
 
         public async Task<NewsReport> GetReportItem(int ReportId)
 

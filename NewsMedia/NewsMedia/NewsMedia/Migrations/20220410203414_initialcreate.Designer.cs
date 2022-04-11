@@ -9,11 +9,11 @@ using NewsMedia.Data;
 
 #nullable disable
 
-namespace NewsMedia.Data.Migrations
+namespace NewsMedia.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220409133934_NewsrepotCategories")]
-    partial class NewsrepotCategories
+    [Migration("20220410203414_initialcreate")]
+    partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,6 +226,23 @@ namespace NewsMedia.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("NewsMedia.Data.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+                });
+
             modelBuilder.Entity("NewsMedia.Data.CommentItem", b =>
                 {
                     b.Property<int>("Id")
@@ -264,9 +281,8 @@ namespace NewsMedia.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -277,9 +293,6 @@ namespace NewsMedia.Data.Migrations
 
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Published")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
