@@ -34,10 +34,10 @@ namespace NewsMedia.Controllers
 
             var CurrentUser = User.Identity.Name;
 
-            // amending to call webapi to get list of reports  - filter by created by the logged in user not working so showing all reports
-            //var searchCategory = 0;
-            //var newsReports = await _reportsApiClient.GetReportListByFilter(CurrentUser, searchCategory);
-            var newsReports = await _reportsApiClient.GetReportList();
+            // amending to call webapi to get list of reports filtered by the logged in user 
+            var searchCategory = 0;
+            var newsReports = await _reportsApiClient.GetReportListByFilter(CurrentUser, searchCategory);
+            //var newsReports = await _reportsApiClient.GetReportList();
 
             // commenting out code that uses local db to get list of logged in user 
             //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);

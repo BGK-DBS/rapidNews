@@ -53,8 +53,7 @@ namespace NewsMedia.Services
             {
                     searchQuery.Add("categoryId", searchCategory.ToString());
             }
-
-            return await Client.GetFromJsonAsync<IEnumerable<NewsReport>>("api/ReportItems/FilterReports");
+            return await Client.GetFromJsonAsync<IEnumerable<NewsReport>>("api/ReportItems/FilterReports" + searchQuery);
         }
 
         public async Task<NewsReport> GetReportItem(int ReportId)
