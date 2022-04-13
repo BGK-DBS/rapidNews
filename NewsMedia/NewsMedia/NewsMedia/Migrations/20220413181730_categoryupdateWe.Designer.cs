@@ -12,8 +12,8 @@ using NewsMedia.Data;
 namespace NewsMedia.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220410203414_initialcreate")]
-    partial class initialcreate
+    [Migration("20220413181730_categoryupdateWe")]
+    partial class categoryupdateWe
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -255,8 +255,9 @@ namespace NewsMedia.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using NewsMedia.Data;
 using NewsMedia.Services;
+using NewsMedia.Models;
 
 namespace NewsMedia.Controllers
 {
@@ -35,17 +36,57 @@ namespace NewsMedia.Controllers
             var CurrentUser = User.Identity.Name;
 
             // amending to call webapi to get list of reports filtered by the logged in user 
-            var searchCategory = 0;
-            var newsReports = await _reportsApiClient.GetReportListByFilter(CurrentUser, searchCategory);
+            //var searchCategory = 0;
+            var newsReports = await _reportsApiClient.GetReportList();//brings all news reports
             //var newsReports = await _reportsApiClient.GetReportList();
 
             // commenting out code that uses local db to get list of logged in user 
             //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
 
-            return View(newsReports);
+            var viewModels = new List<NewsReportViewModel>();
+
+            foreach (var nr in newsReports)
+            {
+                var temp = new NewsReportViewModel();
+
+                temp.Id = nr.Id;
+                temp.Title = nr.Title;
+                temp.Body = nr.Body;
+                temp.CreationDate = nr.CreationDate;
+                //var test = (Category)_context.Category.Where(c => c.Id == Convert.ToInt32(nr.Category));
+
+                //temp.CategoryName = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId)).Name;
+
+                var category = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId));
+                if (category == null)
+                {
+                    temp.CategoryName = "Invalid";
+                }
+                else
+                {
+                    temp.CategoryName = category.Name;
+                }
+
+
+                temp.CreationEmail = nr.CreationEmail;
+                viewModels.Add(temp);
+
+            };
+
+            //return View(await _reportsApiClient.GetReportList());
+            //await _reportsApiClient.GetReportList();
+            return View(viewModels);
+
+           
         }
 
-        public async Task<IActionResult> ListByUser()
+
+
+//return View(await _reportsApiClient.GetReportList());
+//await _reportsApiClient.GetReportList();
+
+
+public async Task<IActionResult> ListByUser()
         {
             var CurrentUser = User.Identity.Name;
 
@@ -109,6 +150,33 @@ namespace NewsMedia.Controllers
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
 
+            
+            var temp = new NewsReportViewModel();
+
+            temp.Id = newsReport.Id;
+            temp.Title = newsReport.Title;
+            temp.Body = newsReport.Body;
+            temp.CreationDate = newsReport.CreationDate;
+            //var test = (Category)_context.Category.Where(c => c.Id == Convert.ToInt32(nr.Category));
+
+            //temp.CategoryName = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId)).Name;
+
+            var category = ((Category)_context.Category.FirstOrDefault(c => c.Id == newsReport.CategoryId));
+            if (category == null)
+            {
+                temp.CategoryName = "Invalid";
+            }
+            else
+            {
+                temp.CategoryName = category.Name;
+            }
+
+
+            temp.CreationEmail = newsReport.CreationEmail;
+               
+
+           
+
             //var newsReport = await _context.NewsReport
             //    .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -117,7 +185,7 @@ namespace NewsMedia.Controllers
                 return NotFound();
             }
 
-            return View(newsReport);
+            return View(temp);
         }
 
         // GET: NewsReports/Create

@@ -1,4 +1,6 @@
-﻿@model NewsMedia.Data.NewsReport
+﻿@*@model NewsMedia.Data.NewsReport*@
+@model NewsMedia.Models.NewsReportViewModel
+
 
 @{
     ViewData["Title"] = "Details";
@@ -29,10 +31,10 @@
             @Html.DisplayFor(model => model.CreationDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryId)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryId)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreationEmail)
