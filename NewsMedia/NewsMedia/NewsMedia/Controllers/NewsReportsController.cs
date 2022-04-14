@@ -19,11 +19,13 @@ namespace NewsMedia.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ReportsApiClient _reportsApiClient;
+        private CommentsApiClient _commentsApiClient;
 
-        public NewsReportsController(ApplicationDbContext context, ReportsApiClient reportsApiClient)
+        public NewsReportsController(ApplicationDbContext context, ReportsApiClient reportsApiClient, CommentsApiClient commentsApiClient)
         {
             _context = context;
             _reportsApiClient = reportsApiClient;
+            _commentsApiClient = commentsApiClient;
         }
 
         // GET: NewsReports
@@ -185,7 +187,18 @@ public async Task<IActionResult> ListByUser()
                 return NotFound();
             }
 
-            return View(temp);
+            //BC Adding in  list of comments 
+            var reportComments = new ReportComments();
+
+            var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
+
+            reportComments.NewsReportItem = temp;
+            reportComments.CommentsList = (List<CommentItem>)comments;
+
+            return View(reportComments);
+
+
+            //return View(temp);
         }
 
         // GET: NewsReports/Create
@@ -239,6 +252,7 @@ public async Task<IActionResult> ListByUser()
                 return NotFound();
             }
             ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
+
             return View(newsReport);
         }
 

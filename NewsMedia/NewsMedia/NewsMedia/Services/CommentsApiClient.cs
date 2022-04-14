@@ -76,7 +76,7 @@ namespace NewsMedia.Services
 
             if (reportIDSearch != 0)
             {
-                searchQuery.Add("categoryId", reportIDSearch.ToString());
+                searchQuery.Add("reportIdSearch", reportIDSearch.ToString());
             }
             return await Client.GetFromJsonAsync<IEnumerable<CommentItem>>("api/CommentItems/FilterComments" + searchQuery);
         }
