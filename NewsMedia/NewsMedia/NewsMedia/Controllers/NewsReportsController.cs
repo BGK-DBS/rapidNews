@@ -286,14 +286,41 @@ public async Task<IActionResult> ListByUser()
 
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
-            //var newsReport = await _context.NewsReport
-            //    .FirstOrDefaultAsync(m => m.Id == id);
+
+
+            var temp = new NewsReportViewModel();
+
+            temp.Id = newsReport.Id;
+            temp.Title = newsReport.Title;
+            temp.Body = newsReport.Body;
+            temp.CreationDate = newsReport.CreationDate;
+            //var test = (Category)_context.Category.Where(c => c.Id == Convert.ToInt32(nr.Category));
+
+            //temp.CategoryName = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId)).Name;
+
+            var category = ((Category)_context.Category.FirstOrDefault(c => c.Id == newsReport.CategoryId));
+            if (category == null)
+            {
+                temp.CategoryName = "Invalid";
+            }
+            else
+            {
+                temp.CategoryName = category.Name;
+            }
+
+
+            temp.CreationEmail = newsReport.CreationEmail;
+
+
+
+
+
             if (newsReport == null)
             {
                 return NotFound();
             }
 
-            return View(newsReport);
+            return View(temp);
         }
 
         // POST: NewsReports/Delete/5

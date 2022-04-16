@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {}
+    "C:\\Users\\George Edgeworth\\Documents\\HDip\\Adv Web Tech\\CA\\GIT\\NewsUI\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {
+    "C:\\Users\\George Edgeworth\\Documents\\HDip\\Adv Web Tech\\CA\\GIT\\NewsUI\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+        "projectUniqueName": "C:\\Users\\George Edgeworth\\Documents\\HDip\\Adv Web Tech\\CA\\GIT\\NewsUI\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
         "projectName": "NewsMedia",
-        "projectPath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
-        "packagesPath": "C:\\Users\\blana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
+        "projectPath": "C:\\Users\\George Edgeworth\\Documents\\HDip\\Adv Web Tech\\CA\\GIT\\NewsUI\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+        "packagesPath": "C:\\Users\\George Edgeworth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\George Edgeworth\\Documents\\HDip\\Adv Web Tech\\CA\\GIT\\NewsUI\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\blana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\George Edgeworth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
