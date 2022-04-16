@@ -80,8 +80,8 @@ namespace NewsMedia.Controllers
                 return NotFound();
             }
 
-            var commentItem = await _context.CommentItem
-                    .FirstOrDefaultAsync(m => m.Id == id);
+            int intID = id.Value;
+            var commentItem = await _commentsApiClient.GetCommentItem(intID);
 
             if (commentItem == null)
             {
@@ -111,64 +111,23 @@ namespace NewsMedia.Controllers
         }
 
 
-        // GET: Comments/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //   if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        // 
-        //var commentItem = await _context.CommentItem.FindAsync(Id);
-        //    //var newsReport = await _context.NewsReport.FindAsync(id);
-        //    if (newsReport == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
-        //    return View(newsReport);
-        //}
+        // GET: CommentItems/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //// POST: NewsReports/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,Category,CreationEmail")] NewsReport newsReport)
-        //{
-        //    if (id != newsReport.Id)
-        //    {
-        //        return NotFound();
-        //    }
+            int intID = id.Value;
+            var commentItem = await _commentsApiClient.GetCommentItem(intID);
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Amended to use webapi and remove local db call & associated error handling 
-        //        newsReport.LastModifiedDate = DateTime.Now; 
-        //        await _reportsApiClient.UpdateReportItem(id, newsReport);
-        //        //try
-        //        //{
-        //        //    newsReport.CreationDate = DateTime.Now;
-        //        //    newsReport.CreationEmail = User.Identity.Name;
-        //        //    _context.Update(newsReport);
-        //        //    await _context.SaveChangesAsync();
-        //        //}
-        //        //catch (DbUpdateConcurrencyException)
-        //        //{
-        //        //    if (!NewsReportExists(newsReport.Id))
-        //        //    {
-        //        //        return NotFound();
-        //        //    }
-        //        //    else
-        //        //    {
-        //        //        throw;
-        //        //    }
-        //        //}
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
-        //    return View(newsReport);
-        //}
+            if (commentItem == null)
+            {
+                return NotFound();
+            }
+            return View(commentItem);
+        }
 
         //// GET: NewsReports/Delete/5
         //public async Task<IActionResult> Delete(int? id)
