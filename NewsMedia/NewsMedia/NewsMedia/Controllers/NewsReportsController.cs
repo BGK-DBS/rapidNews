@@ -151,8 +151,6 @@ public async Task<IActionResult> ListByUser()
 
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
-
-            
             var temp = new NewsReportViewModel();
 
             temp.Id = newsReport.Id;
@@ -173,11 +171,8 @@ public async Task<IActionResult> ListByUser()
                 temp.CategoryName = category.Name;
             }
 
-
             temp.CreationEmail = newsReport.CreationEmail;
                
-
-           
 
             //var newsReport = await _context.NewsReport
             //    .FirstOrDefaultAsync(m => m.Id == id);
@@ -196,7 +191,6 @@ public async Task<IActionResult> ListByUser()
             reportComments.CommentsList = (List<CommentItem>)comments;
 
             return View(reportComments);
-
 
             //return View(temp);
         }
@@ -278,6 +272,11 @@ public async Task<IActionResult> ListByUser()
         // GET: NewsReports/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+            var CurrentUser = User.Identity.Name;
+            //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+
+
             if (id == null)
             {
                 return NotFound();
@@ -310,8 +309,6 @@ public async Task<IActionResult> ListByUser()
 
 
             temp.CreationEmail = newsReport.CreationEmail;
-
-
 
 
 
