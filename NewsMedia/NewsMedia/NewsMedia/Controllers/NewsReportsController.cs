@@ -263,7 +263,6 @@ public async Task<IActionResult> ListByUser()
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,CategoryId,CreationEmail")] NewsReport newsReport)
         {
-            var checking10 = newsReport;
             if (id != newsReport.Id)
             {
                 return NotFound();

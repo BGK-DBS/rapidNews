@@ -35,15 +35,15 @@ namespace NewsMedia.Controllers
             return View(await _commentsApiClient.GetCommentListByFilter(CurrentUser, reportIDSearch));
 
         }
+        // BC - Required CommentListByUser and listByCategory? 
+        //public async Task<IActionResult> CommentListByUser()
+        //{
+        //    var CurrentUser = User.Identity.Name;
 
-        public async Task<IActionResult> CommentListByUser()
-        {
-            var CurrentUser = User.Identity.Name;
+        //    var commentItem = _context.CommentItem.Where(m => m.CreatedBy == CurrentUser);
 
-            var commentItem = _context.CommentItem.Where(m => m.CreatedBy == CurrentUser);
-
-            return View(commentItem);
-        }
+        //    return View(commentItem);
+        //}
 
 
         ////public async Task<IActionResult> ListByCategory(string Category)
@@ -100,13 +100,15 @@ namespace NewsMedia.Controllers
         // POST: Comments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CreatedBy,CommentText,ReportID,DateCeated")] CommentItem commentItem)
+        public async Task<IActionResult> Create([Bind("CommentText,ReportId")] CommentItem commentItem)
         {
-            if (ModelState.IsValid)
-            {
-                await _commentsApiClient.CreateCommentItem(commentItem);
-                return RedirectToAction(nameof(Index));
-            }
+            commentItem.DateCreated = DateTime.Now;
+            commentItem.CreatedBy = User.Identity.Name;
+            //if (ModelState.IsValid)
+            //{
+            await _commentsApiClient.CreateCommentItem(commentItem);
+            return RedirectToAction(nameof(Index));
+            //}
             return View(commentItem);
         }
 
@@ -129,59 +131,94 @@ namespace NewsMedia.Controllers
             return View(commentItem);
         }
 
-        //// GET: NewsReports/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    // Amended to use webapi and remove local db call 
+        // POST: Comments/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CreatedBy,CommentText,ReportId,DateCreated")] CommentItem commentItem)
+        {
+            if (id != commentItem.Id)
+            {
+                return NotFound();
+            }
 
-        //    int ReportId = id.Value;
-        //    var newsReport = await _reportsApiClient.GetReportItem(ReportId);
-        //    //var newsReport = await _context.NewsReport
-        //    //    .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (newsReport == null)
-        //    {
-        //        return NotFound();
-        //    }
+            // Call Comments WebAPI and remove calls to local db
 
-        //    return View(newsReport);
-        //}
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        _context.Update(comment);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!CommentExists(comment.Id))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
 
-        //// POST: NewsReports/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    // Call delete service
-        //    await _reportsApiClient.DeleteReportItem(id);
+            await _commentsApiClient.UpdateCommentItem(id, commentItem);
+            return RedirectToAction(nameof(Index));
+            //}
+            //return View(comment);
+        }
 
-        //    //var newsReport = await _context.NewsReport.FindAsync(id);
-        //    //_context.NewsReport.Remove(newsReport);
-        //    //await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        // GET: Comments/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            // Call Comments WebAPI and remove calls to local db
+            //var comment = await _context.Comment
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            //if (comment == null)
+            //{
+            //    return NotFound();
+            //}
 
-        //private bool NewsReportExists(int id)
-        //{
-        //    return _context.NewsReport.Any(e => e.Id == id);
-        //}
+            //return View(comment);
 
-        //public List<Category> GetCategories()
-        //{
-        //    //var Categories = new List<CategoryList>();
-        //    //Categories.Add(new CategoryList() { Id = 1, ListOfCategories = "National" });
-        //    //Categories.Add(new CategoryList() { Id = 2, ListOfCategories = "International" });
-        //    //Categories.Add(new CategoryList() { Id = 3, ListOfCategories = "Entretaiment" });
-        //    //Categories.Add(new CategoryList() { Id = 4, ListOfCategories = "Sports" });
+            int intID = id.Value;
+            var commentItem = await _commentsApiClient.GetCommentItem(intID);
 
-        //    var categories = _context.Category.ToList();
+            if (commentItem == null)
+            {
+                return NotFound();
+            }
+            return View(commentItem);
 
-        //    return categories;
+        }
+
+        // POST: Comments/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            // Call Comments WebAPI and remove calls to local db
+            //var comment = await _context.Comment.FindAsync(id);
+            //_context.Comment.Remove(comment);
+            //await _context.SaveChangesAsync();
+
+            // Call delete service
+            await _commentsApiClient.DeleteCommentItem(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool CommentExists(int id)
+        {
+            return _context.CommentItem.Any(e => e.Id == id);
+        }
 
 
-        //}
+
     }
 }
