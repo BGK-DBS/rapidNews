@@ -274,7 +274,7 @@ public async Task<IActionResult> ListByUser()
         {
 
             var CurrentUser = User.Identity.Name;
-            //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+          
 
 
             if (id == null)
@@ -285,6 +285,7 @@ public async Task<IActionResult> ListByUser()
 
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+            //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
 
 
             var temp = new NewsReportViewModel();
