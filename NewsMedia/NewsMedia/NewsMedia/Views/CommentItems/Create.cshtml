@@ -15,10 +15,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <label class="control-label"></label>
                 <input asp-for="CreatedBy" class="form-control" value="@UserManager.GetUserId(User)" disabled hidden/>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="CommentText" class="control-label"></label>
                 <input asp-for="CommentText" class="form-control" />
@@ -29,10 +29,10 @@
                 <input asp-for="ReportId" class="form-control" />
                 <span asp-validation-for="ReportId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <label class="control-label"></label>
                 <input asp-for="DateCreated" class="form-control" value="@DateTime.Today" disabled hidden/>
-             </div>
+             </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

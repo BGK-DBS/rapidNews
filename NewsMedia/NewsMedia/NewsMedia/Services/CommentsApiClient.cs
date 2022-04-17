@@ -8,6 +8,14 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+//// The purpose of this service is to call the Report web api to perform the following: 
+//       Get
+//       Get{id}
+//       Put{id}
+//       Create
+//       Delete{id}
+//       Delete{ReportID}
+//       Get(Search Parameters - CreatedBy and ReportID}
 
 namespace NewsMedia.Services
 {
