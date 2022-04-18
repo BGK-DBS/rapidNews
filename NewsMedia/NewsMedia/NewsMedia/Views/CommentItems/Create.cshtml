@@ -24,11 +24,13 @@
                 <input asp-for="CommentText" class="form-control" />
                 <span asp-validation-for="CommentText" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <input type="hidden" asp-for="ReportId"/>
+           
+@*            <div class="form-group">
                 <label asp-for="ReportId" class="control-label"></label>
                 <input asp-for="ReportId" class="form-control" />
                 <span asp-validation-for="ReportId" class="text-danger"></span>
-            </div>
+            </div>*@
 @*            <div class="form-group">
                 <label class="control-label"></label>
                 <input asp-for="DateCreated" class="form-control" value="@DateTime.Today" disabled hidden/>
@@ -41,7 +43,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="NewsReports" asp-action="Index">Back to Report List</a>
 </div>
 
 @section Scripts {

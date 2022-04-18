@@ -88,31 +88,31 @@ namespace NewsMedia.Controllers
 //await _reportsApiClient.GetReportList();
 
 
-public async Task<IActionResult> ListByUser()
-        {
-            var CurrentUser = User.Identity.Name;
+//public async Task<IActionResult> ListByUser()
+//        {
+//            var CurrentUser = User.Identity.Name;
 
-            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+//            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
 
-            return View(newsReport);
-        }
+//            return View(newsReport);
+//        }
 
-        public async Task<IActionResult> ListByTitle(string title)
-        {
-            if (String.IsNullOrEmpty(title))
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> ListByTitle(string title)
+        //{
+        //    if (String.IsNullOrEmpty(title))
+        //    {
+        //        return NotFound();
+        //    }
 
-            var newsReport = _context.NewsReport.Where(m => m.Title == title);
+        //    var newsReport = _context.NewsReport.Where(m => m.Title == title);
 
-            if (newsReport == null)
-            {
-                return NotFound();
-            }
+        //    if (newsReport == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(newsReport);
-        }
+        //    return View(newsReport);
+        //}
 
         //public async Task<IActionResult> ListByCategory(string Category)
         //{
@@ -131,14 +131,14 @@ public async Task<IActionResult> ListByUser()
         //    return View(newsReport);
         //}
 
-        public async Task<IActionResult> EditByUser()
-        {
-            var CurrentUser = User.Identity.Name;
+        //public async Task<IActionResult> EditByUser()
+        //{
+        //    var CurrentUser = User.Identity.Name;
 
-            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+        //    var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
 
-            return View(newsReport);
-        }
+        //    return View(newsReport);
+        //}
 
         // GET: NewsReports/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -237,7 +237,8 @@ public async Task<IActionResult> ListByUser()
                 return NotFound();
             }
             // Amended to use webapi and remove local db call 
-
+            //BC Adding in  list of comments 
+            var reportComments = new ReportComments();
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
             //var newsReport = await _context.NewsReport.FindAsync(id);
@@ -246,25 +247,58 @@ public async Task<IActionResult> ListByUser()
                 return NotFound();
             }
             ViewBag.CategoriesSelectList = new SelectList(GetCategories(), "Id", "Name");
+            var temp = new NewsReportViewModel();
 
-            return View(newsReport);
+            temp.Id = newsReport.Id;
+            temp.Title = newsReport.Title;
+            temp.Body = newsReport.Body;
+            temp.CreationDate = newsReport.CreationDate;
+            //var test = (Category)_context.Category.Where(c => c.Id == Convert.ToInt32(nr.Category));
+
+            //temp.CategoryName = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId)).Name;
+
+            var category = ((Category)_context.Category.FirstOrDefault(c => c.Id == newsReport.CategoryId));
+            if (category == null)
+            {
+                temp.CategoryName = "Invalid";
+            }
+            else
+            {
+                temp.CategoryName = category.Name;
+            }
+
+
+            temp.CreationEmail = newsReport.CreationEmail;
+            //BC Adding in  list of comments 
+            //var reportComments = new ReportComments();
+
+            var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
+
+            reportComments.NewsReportItem = temp;
+            reportComments.ReportItem  = newsReport;
+            reportComments.CommentsList = (List<CommentItem>)comments;
+
+            return View(reportComments);
+
+            //return View(newsReport);
         }
 
         // POST: NewsReports/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,CategoryId,CreationEmail")] NewsReport newsReport)
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreationDate,LastModifiedDate,CategoryId,CreationEmail")] ReportComments reportComments)
+        public async Task<IActionResult> Edit(int id, ReportComments reportComments)
         {
-            if (id != newsReport.Id)
+            if (id != reportComments.ReportItem.Id)
             {
                 return NotFound();
             }
  
             // Amended to use webapi and remove local db call & associated error handling 
-                newsReport.LastModifiedDate = DateTime.Now;
-                await _reportsApiClient.UpdateReportItem(id, newsReport);
+                reportComments.ReportItem.LastModifiedDate = DateTime.Now;
+                await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
                 return RedirectToAction(nameof(Index));
         }
 

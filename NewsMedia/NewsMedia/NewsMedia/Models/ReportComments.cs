@@ -10,5 +10,7 @@ namespace NewsMedia.Models
         public List<CommentItem> CommentsList { get; set; }
 
         public CommentItem CommentItem { get; set; }
+
+        public NewsReport ReportItem { get; set; }
     }
 }
