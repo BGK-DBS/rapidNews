@@ -151,8 +151,6 @@ namespace NewsMedia.Controllers
 
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
-
-            
             var temp = new NewsReportViewModel();
 
             temp.Id = newsReport.Id;
@@ -173,11 +171,8 @@ namespace NewsMedia.Controllers
                 temp.CategoryName = category.Name;
             }
 
-
             temp.CreationEmail = newsReport.CreationEmail;
                
-
-           
 
             //var newsReport = await _context.NewsReport
             //    .FirstOrDefaultAsync(m => m.Id == id);
@@ -196,7 +191,6 @@ namespace NewsMedia.Controllers
             reportComments.CommentsList = (List<CommentItem>)comments;
 
             return View(reportComments);
-
 
             //return View(temp);
         }
@@ -311,6 +305,11 @@ namespace NewsMedia.Controllers
         // GET: NewsReports/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+            var CurrentUser = User.Identity.Name;
+          
+
+
             if (id == null)
             {
                 return NotFound();
@@ -319,6 +318,7 @@ namespace NewsMedia.Controllers
 
             int ReportId = id.Value;
             var newsReport = await _reportsApiClient.GetReportItem(ReportId);
+            //var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
 
 
             var temp = new NewsReportViewModel();
@@ -343,8 +343,6 @@ namespace NewsMedia.Controllers
 
 
             temp.CreationEmail = newsReport.CreationEmail;
-
-
 
 
 
