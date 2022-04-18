@@ -1,4 +1,6 @@
-﻿@model NewsMedia.Data.NewsReport
+﻿@*@model NewsMedia.Data.NewsReport*@
+
+@model NewsMedia.Models.ReportComments
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,40 +14,44 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ReportItem.Id" />
+            @{
+                var reportID = @Model.ReportItem.Id.ToString();
+                TempData["Report Id"] = reportID;
+            }
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <label asp-for="ReportItem.Title" class="control-label"></label>
+                <input asp-for="ReportItem.Title" class="form-control" />
+                <span asp-validation-for="ReportItem.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Body" class="control-label"></label>
-                <input asp-for="Body" class="form-control" />
-                <span asp-validation-for="Body" class="text-danger"></span>
+                <label asp-for="ReportItem.Body" class="control-label"></label>
+                <input asp-for="ReportItem.Body" class="form-control" />
+                <span asp-validation-for="ReportItem.Body" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="CreationDate" />
+            <input type="hidden" asp-for="ReportItem.CreationDate"/>
 @*            <div class="form-group">
                 <label asp-for="CreationDate" class="control-label"></label>
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>*@
-            <input type="hidden" asp-for="LastModifiedDate" />
+@*            <input type="hidden" asp-for="LastModifiedDate" />*@
             @*<div class="form-group">
                 <label asp-for="LastModifiedDate" class="control-label"></label>
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                @Html.DropDownListFor(m => m.CategoryId,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <label asp-for="ReportItem.CategoryId" class="control-label"></label>
+                @Html.DropDownListFor(m => m.ReportItem.CategoryId,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
+                <span asp-validation-for="ReportItem.CategoryId" class="text-danger"></span>
             </div>
            @*<div class="form-group">
                 <label asp-for="CreationEmail" class="control-label"></label>
                 <input asp-for="CreationEmail" class="form-control" />
                 <span asp-validation-for="CreationEmail" class="text-danger"></span>
             </div>*@
-            <input type="hidden" asp-for="CreationEmail" />
+            <input type="hidden" asp-for="ReportItem.CreationEmail" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -57,6 +63,56 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+@*Adding in list of comments related to a report*@
+
+<div>
+    <h4>Comments</h4>
+</div>
+
+
+<a asp-controller="CommentItems" asp-action="Create" asp-route-Id="@Model.ReportItem.Id">Create New</a>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.CommentText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.ReportId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.DateCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CommentsList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

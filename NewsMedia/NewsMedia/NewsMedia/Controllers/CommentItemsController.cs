@@ -18,6 +18,7 @@ namespace NewsMedia.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly CommentsApiClient _commentsApiClient;
+        private int reportIdentifier;
 
         public CommentItemsController(ApplicationDbContext context, CommentsApiClient commentsApiClient)
         {
@@ -91,10 +92,32 @@ namespace NewsMedia.Controllers
             return View(commentItem);
             }
 
-        // GET: Comments/Create
+        //// GET: Comments/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //// POST: Comments/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("CommentText,ReportId")] CommentItem commentItem)
+        //{
+        //    commentItem.DateCreated = DateTime.Now;
+        //    commentItem.CreatedBy = User.Identity.Name;
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    await _commentsApiClient.CreateCommentItem(commentItem);
+        //    return RedirectToAction(nameof(Index));
+        //    //}
+        //    //return View(commentItem);
+        //}
+        //BC - create comment linked to report start
+        // GET: Comments/Create/{ReportId}
         public IActionResult Create()
-        {
+        { 
             return View();
+
         }
 
         // POST: Comments/Create
@@ -104,14 +127,29 @@ namespace NewsMedia.Controllers
         {
             commentItem.DateCreated = DateTime.Now;
             commentItem.CreatedBy = User.Identity.Name;
+            commentItem.ReportId = 0;
+            if (TempData.ContainsKey("Report Id"))
+                { 
+                    var commentreportID = TempData["Report Id"].ToString();
+                if (!(commentreportID == null))
+                    {
+                    bool IsParsable = Int32.TryParse(commentreportID, out reportIdentifier);
+                    if (IsParsable)
+                        {
+                        commentItem.ReportId = reportIdentifier;
+                        }
+                    }
+                }
+ 
+
             //if (ModelState.IsValid)
             //{
             await _commentsApiClient.CreateCommentItem(commentItem);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "NewsReports");
             //}
-            return View(commentItem);
+            //return View(commentItem);
         }
-
+        //BC - End create linked to report ID
 
         // GET: CommentItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
