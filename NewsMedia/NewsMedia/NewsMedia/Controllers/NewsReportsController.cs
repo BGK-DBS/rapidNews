@@ -351,7 +351,16 @@ namespace NewsMedia.Controllers
                 return NotFound();
             }
 
-            return View(temp);
+            //BC Adding in  list of comments 
+            var reportComments = new ReportComments();
+
+            var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
+
+            reportComments.NewsReportItem = temp;
+            reportComments.CommentsList = (List<CommentItem>)comments;
+
+            return View(reportComments);
+            //return View(temp);
         }
 
         // POST: NewsReports/Delete/5
@@ -361,6 +370,21 @@ namespace NewsMedia.Controllers
         {
             // Call delete service
             await _reportsApiClient.DeleteReportItem(id);
+
+            // BC - delete all related comments
+            
+            var reportComments = new ReportComments();
+
+            var comments = await _commentsApiClient.GetCommentListByFilter("", id);
+
+            reportComments.CommentsList = (List<CommentItem>)comments;
+           
+            for (int i = 0; i < reportComments.CommentsList.Count; i++)
+            {
+                var comment = reportComments.CommentsList[i];
+                await _commentsApiClient.DeleteCommentItem(comment.Id);
+
+            }
 
             //var newsReport = await _context.NewsReport.FindAsync(id);
             //_context.NewsReport.Remove(newsReport);

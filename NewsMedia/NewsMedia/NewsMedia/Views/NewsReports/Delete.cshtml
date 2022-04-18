@@ -1,5 +1,7 @@
 ﻿@*@model NewsMedia.Data.NewsReport*@
-@model NewsMedia.Models.NewsReportViewModel
+@*@model NewsMedia.Models.NewsReportViewModel*@
+
+@model NewsMedia.Models.ReportComments
 
 
 @{
@@ -9,45 +11,91 @@
 <h1>Delete</h1>
 
 <h3>Are you sure you want to delete this?</h3>
+
+
 <div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="NewsReportItem.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+
     <h4>NewsReport</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.NewsReportItem.Title)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.NewsReportItem.Title)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Body)
+            @Html.DisplayNameFor(model => model.NewsReportItem.Body)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Body)
+            @Html.DisplayFor(model => model.NewsReportItem.Body)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreationDate)
+            @Html.DisplayNameFor(model => model.NewsReportItem.CreationDate)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreationDate)
+            @Html.DisplayFor(model => model.NewsReportItem.CreationDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryName)
+            @Html.DisplayNameFor(model => model.NewsReportItem.CategoryName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
+            @Html.DisplayFor(model => model.NewsReportItem.CategoryName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreationEmail)
+            @Html.DisplayNameFor(model => model.NewsReportItem.CreationEmail)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreationEmail)
+            @Html.DisplayFor(model => model.NewsReportItem.CreationEmail)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
 </div>
+
+@*Adding in list of comments related to a report*@
+
+<div>
+    <h4>Comments</h4>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.CommentText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.ReportId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentItem.DateCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CommentsList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
