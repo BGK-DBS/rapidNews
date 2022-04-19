@@ -44,9 +44,15 @@
                 <span asp-validation-for="CreationEmail" class="text-danger"></span>
             </div>*@
 @*            <div class="form-group">
-                <label class="control-label"></label>
-                <input asp-for="CreationEmail" value=@User.Identity.Name disabled />
+                <label asp-for="IsPublished" class="control-label"></label>
+                <input asp-for="IsPublished" class="form-control" />
+                <span asp-validation-for="IsPublished" class="text-danger"></span>
             </div>*@
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
+                </label>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

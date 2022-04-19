@@ -53,6 +53,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NewsReportItem.CreationEmail)
         </dd>
+                <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NewsReportItem.IsPublished)
+        </dt>
+        <dd class = "col-sm-10">
+            @(Model.NewsReportItem.IsPublished? "Yes":"No")
+        </dd>
     </dl>
 
 </div>

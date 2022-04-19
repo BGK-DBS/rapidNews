@@ -55,6 +55,7 @@ namespace NewsMedia.Controllers
                 temp.Title = nr.Title;
                 temp.Body = nr.Body;
                 temp.CreationDate = nr.CreationDate;
+ 
                 //var test = (Category)_context.Category.Where(c => c.Id == Convert.ToInt32(nr.Category));
 
                 //temp.CategoryName = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId)).Name;
@@ -71,6 +72,7 @@ namespace NewsMedia.Controllers
 
 
                 temp.CreationEmail = nr.CreationEmail;
+                temp.IsPublished = nr.IsPublished;
                 viewModels.Add(temp);
 
             };
@@ -172,7 +174,8 @@ namespace NewsMedia.Controllers
             }
 
             temp.CreationEmail = newsReport.CreationEmail;
-               
+            temp.IsPublished = newsReport.IsPublished;
+
 
             //var newsReport = await _context.NewsReport
             //    .FirstOrDefaultAsync(m => m.Id == id);
@@ -208,7 +211,7 @@ namespace NewsMedia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body,CategoryId")] NewsReport newsReport)
+        public async Task<IActionResult> Create([Bind("Id,Title,Body,CategoryId,IsPublished")] NewsReport newsReport)
   
         {
             newsReport.CreationDate = DateTime.Now;
@@ -269,6 +272,7 @@ namespace NewsMedia.Controllers
 
 
             temp.CreationEmail = newsReport.CreationEmail;
+            temp.IsPublished = newsReport.IsPublished;  
             //BC Adding in  list of comments 
             //var reportComments = new ReportComments();
 
@@ -343,6 +347,7 @@ namespace NewsMedia.Controllers
 
 
             temp.CreationEmail = newsReport.CreationEmail;
+            temp.IsPublished = newsReport.IsPublished;  
 
 
 
