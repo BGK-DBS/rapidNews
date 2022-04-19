@@ -88,7 +88,7 @@ namespace NewsMedia.Controllers
         //await _reportsApiClient.GetReportList();
 
 
-<<<<<<< HEAD
+
         //public async Task<IActionResult> ListByUser()
         //        {
         //            var CurrentUser = User.Identity.Name;
@@ -97,7 +97,7 @@ namespace NewsMedia.Controllers
 
         //            return View(newsReport);
         //        }
-=======
+
 //public async Task<IActionResult> ListByUser()
 //        {
 //            var CurrentUser = User.Identity.Name;
@@ -106,7 +106,7 @@ namespace NewsMedia.Controllers
 
 //            return View(newsReport);
 //        }
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
+
 
         //public async Task<IActionResult> ListByTitle(string title)
         //{
@@ -184,10 +184,7 @@ namespace NewsMedia.Controllers
 
             temp.CreationEmail = newsReport.CreationEmail;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
             //var newsReport = await _context.NewsReport
             //    .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -322,11 +319,10 @@ namespace NewsMedia.Controllers
             var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
 
             reportComments.NewsReportItem = temp;
-<<<<<<< HEAD
+
             reportComments.ReportItem = newsReport;
-=======
             reportComments.ReportItem  = newsReport;
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
+
             reportComments.CommentsList = (List<CommentItem>)comments;
 
             return View(reportComments);
@@ -348,15 +344,14 @@ namespace NewsMedia.Controllers
             }
 
             // Amended to use webapi and remove local db call & associated error handling 
-<<<<<<< HEAD
+
             reportComments.ReportItem.LastModifiedDate = DateTime.Now;
             await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
             return RedirectToAction(nameof(Index));
-=======
                 reportComments.ReportItem.LastModifiedDate = DateTime.Now;
                 await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
                 return RedirectToAction(nameof(Index));
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
+
         }
 
         // GET: NewsReports/Delete/5
@@ -364,11 +359,7 @@ namespace NewsMedia.Controllers
         {
 
             var CurrentUser = User.Identity.Name;
-<<<<<<< HEAD
 
-=======
-          
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
 
 
             if (id == null)
@@ -433,21 +424,15 @@ namespace NewsMedia.Controllers
             await _reportsApiClient.DeleteReportItem(id);
 
             // BC - delete all related comments
-<<<<<<< HEAD
 
-=======
             
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
+
             var reportComments = new ReportComments();
 
             var comments = await _commentsApiClient.GetCommentListByFilter("", id);
 
             reportComments.CommentsList = (List<CommentItem>)comments;
-<<<<<<< HEAD
 
-=======
-           
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
             for (int i = 0; i < reportComments.CommentsList.Count; i++)
             {
                 var comment = reportComments.CommentsList[i];
