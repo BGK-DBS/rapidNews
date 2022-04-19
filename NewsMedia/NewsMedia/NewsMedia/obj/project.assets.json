@@ -9860,19 +9860,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\blana\\.nuget\\packages\\": {}
+    "C:\\Users\\keith\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+      "projectUniqueName": "C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
       "projectName": "NewsMedia",
-      "projectPath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
-      "packagesPath": "C:\\Users\\blana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
+      "projectPath": "C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+      "packagesPath": "C:\\Users\\keith\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\blana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\keith\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9949,8 +9949,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

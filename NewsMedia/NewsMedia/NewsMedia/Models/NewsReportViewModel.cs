@@ -18,7 +18,7 @@ namespace NewsMedia.Models
 
         public string? CreationEmail { get; set; }
 
-       // public bool? Published { get; set; } // to confirm if it will be shown or not
+        // public bool? Published { get; set; } // to confirm if it will be shown or not
 
     }
 }
