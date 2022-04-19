@@ -79,14 +79,24 @@ namespace NewsMedia.Controllers
             //await _reportsApiClient.GetReportList();
             return View(viewModels);
 
-           
+
         }
 
 
 
-//return View(await _reportsApiClient.GetReportList());
-//await _reportsApiClient.GetReportList();
+        //return View(await _reportsApiClient.GetReportList());
+        //await _reportsApiClient.GetReportList();
 
+
+
+        //public async Task<IActionResult> ListByUser()
+        //        {
+        //            var CurrentUser = User.Identity.Name;
+
+        //            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+
+        //            return View(newsReport);
+        //        }
 
 //public async Task<IActionResult> ListByUser()
 //        {
@@ -96,6 +106,7 @@ namespace NewsMedia.Controllers
 
 //            return View(newsReport);
 //        }
+
 
         //public async Task<IActionResult> ListByTitle(string title)
         //{
@@ -172,7 +183,7 @@ namespace NewsMedia.Controllers
             }
 
             temp.CreationEmail = newsReport.CreationEmail;
-               
+
 
             //var newsReport = await _context.NewsReport
             //    .FirstOrDefaultAsync(m => m.Id == id);
@@ -195,6 +206,39 @@ namespace NewsMedia.Controllers
             //return View(temp);
         }
 
+        public enum Publish { yes, no };
+
+
+        private void SetViewBagPublishType(Publish Publish)
+        {
+            IEnumerable<Publish> values = Enum.GetValues(typeof(Publish))
+
+                .Cast<Publish>();
+            IEnumerable<SelectListItem> items = from value in values
+                                                select new SelectListItem
+                                                {
+                                                    Text = value.ToString(),
+                                                    Value = value.ToString(),
+                                                    Selected = value == Publish,
+                                                };
+            ViewBag.PublishType = items;
+
+        }
+
+        public ActionResult items()
+        {
+            SetViewBagPublishType(Publish.yes);
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult itemsPost()
+        {
+            ViewBag.messageString = Publish.yes;
+            return View();
+        }
+
         // GET: NewsReports/Create
         public IActionResult Create()
 
@@ -209,7 +253,7 @@ namespace NewsMedia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Body,CategoryId")] NewsReport newsReport)
-  
+
         {
             newsReport.CreationDate = DateTime.Now;
             newsReport.LastModifiedDate = DateTime.Now;
@@ -275,7 +319,10 @@ namespace NewsMedia.Controllers
             var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
 
             reportComments.NewsReportItem = temp;
+
+            reportComments.ReportItem = newsReport;
             reportComments.ReportItem  = newsReport;
+
             reportComments.CommentsList = (List<CommentItem>)comments;
 
             return View(reportComments);
@@ -295,11 +342,16 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
- 
+
             // Amended to use webapi and remove local db call & associated error handling 
+
+            reportComments.ReportItem.LastModifiedDate = DateTime.Now;
+            await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
+            return RedirectToAction(nameof(Index));
                 reportComments.ReportItem.LastModifiedDate = DateTime.Now;
                 await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
                 return RedirectToAction(nameof(Index));
+
         }
 
         // GET: NewsReports/Delete/5
@@ -307,7 +359,7 @@ namespace NewsMedia.Controllers
         {
 
             var CurrentUser = User.Identity.Name;
-          
+
 
 
             if (id == null)
@@ -351,7 +403,16 @@ namespace NewsMedia.Controllers
                 return NotFound();
             }
 
-            return View(temp);
+            //BC Adding in  list of comments 
+            var reportComments = new ReportComments();
+
+            var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
+
+            reportComments.NewsReportItem = temp;
+            reportComments.CommentsList = (List<CommentItem>)comments;
+
+            return View(reportComments);
+            //return View(temp);
         }
 
         // POST: NewsReports/Delete/5
@@ -361,6 +422,23 @@ namespace NewsMedia.Controllers
         {
             // Call delete service
             await _reportsApiClient.DeleteReportItem(id);
+
+            // BC - delete all related comments
+
+            
+
+            var reportComments = new ReportComments();
+
+            var comments = await _commentsApiClient.GetCommentListByFilter("", id);
+
+            reportComments.CommentsList = (List<CommentItem>)comments;
+
+            for (int i = 0; i < reportComments.CommentsList.Count; i++)
+            {
+                var comment = reportComments.CommentsList[i];
+                await _commentsApiClient.DeleteCommentItem(comment.Id);
+
+            }
 
             //var newsReport = await _context.NewsReport.FindAsync(id);
             //_context.NewsReport.Remove(newsReport);
@@ -373,6 +451,16 @@ namespace NewsMedia.Controllers
             return _context.NewsReport.Any(e => e.Id == id);
         }
 
+
+        public List<Publish> GetPublish()
+        {
+            var Publish = new List<Publish>();
+
+            var publish = _context.publish.ToList();
+
+            return publish;
+
+        }
         public List<Category> GetCategories()
         {
             //var Categories = new List<CategoryList>();
