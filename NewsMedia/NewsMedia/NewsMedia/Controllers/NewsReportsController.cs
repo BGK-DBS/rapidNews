@@ -98,14 +98,14 @@ namespace NewsMedia.Controllers
         //            return View(newsReport);
         //        }
 
-//public async Task<IActionResult> ListByUser()
-//        {
-//            var CurrentUser = User.Identity.Name;
+        //public async Task<IActionResult> ListByUser()
+        //        {
+        //            var CurrentUser = User.Identity.Name;
 
-//            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
+        //            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
 
-//            return View(newsReport);
-//        }
+        //            return View(newsReport);
+        //        }
 
 
         //public async Task<IActionResult> ListByTitle(string title)
@@ -321,7 +321,7 @@ namespace NewsMedia.Controllers
             reportComments.NewsReportItem = temp;
 
             reportComments.ReportItem = newsReport;
-            reportComments.ReportItem  = newsReport;
+            reportComments.ReportItem = newsReport;
 
             reportComments.CommentsList = (List<CommentItem>)comments;
 
@@ -348,9 +348,9 @@ namespace NewsMedia.Controllers
             reportComments.ReportItem.LastModifiedDate = DateTime.Now;
             await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
             return RedirectToAction(nameof(Index));
-                reportComments.ReportItem.LastModifiedDate = DateTime.Now;
-                await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
-                return RedirectToAction(nameof(Index));
+            reportComments.ReportItem.LastModifiedDate = DateTime.Now;
+            await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
+            return RedirectToAction(nameof(Index));
 
         }
 
@@ -425,7 +425,7 @@ namespace NewsMedia.Controllers
 
             // BC - delete all related comments
 
-            
+
 
             var reportComments = new ReportComments();
 

@@ -35,22 +35,16 @@ IEnumerable<NewsMedia.Data.NewsReport>
                 <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-<<<<<<< HEAD
-                <label asp-for="Category" class="control-label"></label>
-                @Html.DropDownListFor(m => m.Category,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
+
                 
-                <span asp-validation-for="Category" class="text-danger"></span>
-         
-=======
+
                 <label asp-for="CategoryId" class="control-label"></label>
                 @Html.DropDownListFor(m => m.CategoryId,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
->>>>>>> ccbea2a6401dfbdb157e4d4bcdf0c58c813ae299
-            </div>
+
             
-               <div class ="Publish"> class="control-label"></label>
-                @Html.DropDownListFor
-                <span asp-validation-for="Category" class="text-danger"></span>
+            
+              
 
                 </div>
            @* <div class="form-group">
