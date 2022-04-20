@@ -35,18 +35,10 @@ IEnumerable<NewsMedia.Data.NewsReport>
                 <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-
-                
-
                 <label asp-for="CategoryId" class="control-label"></label>
                 @Html.DropDownListFor(m => m.CategoryId,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
-
-            
-            
-              
-
-                </div>
+           </div>
            @* <div class="form-group">
                 <label asp-for="CreationEmail" class="control-label"></label>
                 <input asp-for="CreationEmail" class="form-control" />
