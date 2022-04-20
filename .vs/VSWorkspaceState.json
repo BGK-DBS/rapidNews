@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NewsMedia",
+    "\\NewsMedia\\NewsMedia",
+    "\\NewsMedia\\NewsMedia\\NewsMedia"
   ],
-  "SelectedNode": "\\NewsMedia.sln",
+  "SelectedNode": "\\NewsMedia\\NewsMedia\\NewsMedia.sln",
   "PreviewInSolutionExplorer": false
 }

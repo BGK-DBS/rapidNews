@@ -8,129 +8,129 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = NewsMedia
 build_property.RootNamespace = NewsMedia
-build_property.ProjectDir = C:\Users\blana\projectsdbs\rapidNews\NewsMedia\NewsMedia\NewsMedia\
+build_property.ProjectDir = C:\Users\keith\Source\Repos\BGK-DBS\rapidNews\NewsMedia\NewsMedia\NewsMedia\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\blana\projectsdbs\rapidNews\NewsMedia\NewsMedia\NewsMedia
+build_property.MSBuildProjectDirectory = C:\Users\keith\Source\Repos\BGK-DBS\rapidNews\NewsMedia\NewsMedia\NewsMedia
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Create.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Delete.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Details.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Edit.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Index.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Categories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Create.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudEl0ZW1zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Delete.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudEl0ZW1zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Details.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudEl0ZW1zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Edit.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudEl0ZW1zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Index.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/CommentItems/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudEl0ZW1zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Home/Index.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Home/Privacy.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Create.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Delete.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Details.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Edit.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/EditByUser.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/EditByUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcRWRpdEJ5VXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Index.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByCategory.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcTGlzdEJ5Q2F0ZWdvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByPublish.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByPublish.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcTGlzdEJ5UHVibGlzaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByTitle.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByTitle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcTGlzdEJ5VGl0bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByUser.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/ListByUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcTGlzdEJ5VXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Publish.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/NewsReports/Publish.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1JlcG9ydHNcUHVibGlzaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/Error.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/_ViewImports.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/_ViewStart.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/blana/projectsdbs/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/_Layout.cshtml]
+[C:/Users/keith/Source/Repos/BGK-DBS/rapidNews/NewsMedia/NewsMedia/NewsMedia/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-oj85ix6tmp

@@ -1,7 +1,13 @@
-﻿@*@model NewsMedia.Data.NewsReport*@
-@*@model NewsMedia.Models.NewsReportViewModel*@
+﻿@*@model NewsMedia.Data.NewsReport*
+
+@*model NewsMedia.Models.NewsReportViewModel
+@*@model NewsMedia.Models.NewsReportViewModel*
 
 @model NewsMedia.Models.ReportComments
+
+
+
+
 
 
 @{
@@ -42,10 +48,17 @@
             @Html.DisplayFor(model => model.NewsReportItem.CreationDate)
         </dd>
         <dt class = "col-sm-2">
+
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+
             @Html.DisplayNameFor(model => model.NewsReportItem.CategoryName)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NewsReportItem.CategoryName)
+
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NewsReportItem.CreationEmail)
@@ -105,3 +118,5 @@
 }
     </tbody>
 </table>
+
+
