@@ -9860,19 +9860,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\keith\\.nuget\\packages\\": {}
+    "C:\\Users\\gilbe\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+      "projectUniqueName": "C:\\Users\\gilbe\\OneDrive\\Documentos\\GitHub\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
       "projectName": "NewsMedia",
-      "projectPath": "C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
-      "packagesPath": "C:\\Users\\keith\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
+      "projectPath": "C:\\Users\\gilbe\\OneDrive\\Documentos\\GitHub\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+      "packagesPath": "C:\\Users\\gilbe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gilbe\\OneDrive\\Documentos\\GitHub\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\keith\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gilbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9952,13 +9952,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\keith\\Source\\Repos\\BGK-DBS\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

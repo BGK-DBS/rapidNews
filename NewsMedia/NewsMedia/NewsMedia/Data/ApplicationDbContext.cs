@@ -13,9 +13,6 @@ namespace NewsMedia.Data
         public DbSet<NewsMedia.Data.NewsReport> NewsReport { get; set; }
         public DbSet<NewsMedia.Data.CommentItem> CommentItem { get; set; }
         public DbSet<NewsMedia.Data.Category> Category { get; set; }
-
-        
-
-        
+        public object publish { get; internal set; }
     }
 }
