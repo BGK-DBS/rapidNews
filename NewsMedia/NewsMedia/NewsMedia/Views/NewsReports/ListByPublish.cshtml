@@ -24,9 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreationDate)
             </th>
-            <th>
+@*            <th>
                 @Html.DisplayNameFor(model => model.Category)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CreationEmail)
             </th>
@@ -34,11 +34,11 @@
         </tr>
     </thead>
     <tbody>
-            <div class ="form-group">
+@*            <div class ="form-group">
                 <label asp-for="Publish" class="control-label"></label>
 
                 @Html.DropDownListFor(m => m.PublishType,(ViewBag.PublishTypeSelectList as SelectList), "Select Publish")
-            </div>
+            </div>*@
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -50,9 +50,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
-            <td>
+@*            <td>
                 @Html.DisplayFor(modelItem => item.Category)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CreationEmail)
             </td>

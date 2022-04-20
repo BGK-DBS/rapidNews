@@ -55,6 +55,7 @@ namespace NewsMedia.Controllers
                 temp.Title = nr.Title;
                 temp.Body = nr.Body;
                 temp.CreationDate = nr.CreationDate;
+ 
                 //var test = (Category)_context.Category.Where(c => c.Id == Convert.ToInt32(nr.Category));
 
                 //temp.CategoryName = ((Category)_context.Category.FirstOrDefault(c => c.Id == nr.CategoryId)).Name;
@@ -71,6 +72,7 @@ namespace NewsMedia.Controllers
 
 
                 temp.CreationEmail = nr.CreationEmail;
+                temp.IsPublished = nr.IsPublished;
                 viewModels.Add(temp);
 
             };
@@ -79,24 +81,14 @@ namespace NewsMedia.Controllers
             //await _reportsApiClient.GetReportList();
             return View(viewModels);
 
-
+           
         }
 
 
 
-        //return View(await _reportsApiClient.GetReportList());
-        //await _reportsApiClient.GetReportList();
+//return View(await _reportsApiClient.GetReportList());
+//await _reportsApiClient.GetReportList();
 
-
-
-        //public async Task<IActionResult> ListByUser()
-        //        {
-        //            var CurrentUser = User.Identity.Name;
-
-        //            var newsReport = _context.NewsReport.Where(m => m.CreationEmail == CurrentUser);
-
-        //            return View(newsReport);
-        //        }
 
 //public async Task<IActionResult> ListByUser()
 //        {
@@ -106,7 +98,6 @@ namespace NewsMedia.Controllers
 
 //            return View(newsReport);
 //        }
-
 
         //public async Task<IActionResult> ListByTitle(string title)
         //{
@@ -183,6 +174,7 @@ namespace NewsMedia.Controllers
             }
 
             temp.CreationEmail = newsReport.CreationEmail;
+            temp.IsPublished = newsReport.IsPublished;
 
 
             //var newsReport = await _context.NewsReport
@@ -206,39 +198,6 @@ namespace NewsMedia.Controllers
             //return View(temp);
         }
 
-        public enum Publish { yes, no };
-
-
-        private void SetViewBagPublishType(Publish Publish)
-        {
-            IEnumerable<Publish> values = Enum.GetValues(typeof(Publish))
-
-                .Cast<Publish>();
-            IEnumerable<SelectListItem> items = from value in values
-                                                select new SelectListItem
-                                                {
-                                                    Text = value.ToString(),
-                                                    Value = value.ToString(),
-                                                    Selected = value == Publish,
-                                                };
-            ViewBag.PublishType = items;
-
-        }
-
-        public ActionResult items()
-        {
-            SetViewBagPublishType(Publish.yes);
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult itemsPost()
-        {
-            ViewBag.messageString = Publish.yes;
-            return View();
-        }
-
         // GET: NewsReports/Create
         public IActionResult Create()
 
@@ -252,8 +211,8 @@ namespace NewsMedia.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body,CategoryId")] NewsReport newsReport)
-
+        public async Task<IActionResult> Create([Bind("Id,Title,Body,CategoryId,IsPublished")] NewsReport newsReport)
+  
         {
             newsReport.CreationDate = DateTime.Now;
             newsReport.LastModifiedDate = DateTime.Now;
@@ -313,16 +272,14 @@ namespace NewsMedia.Controllers
 
 
             temp.CreationEmail = newsReport.CreationEmail;
+            temp.IsPublished = newsReport.IsPublished;  
             //BC Adding in  list of comments 
             //var reportComments = new ReportComments();
 
             var comments = await _commentsApiClient.GetCommentListByFilter("", ReportId);
 
             reportComments.NewsReportItem = temp;
-
-            reportComments.ReportItem = newsReport;
             reportComments.ReportItem  = newsReport;
-
             reportComments.CommentsList = (List<CommentItem>)comments;
 
             return View(reportComments);
@@ -342,16 +299,11 @@ namespace NewsMedia.Controllers
             {
                 return NotFound();
             }
-
+ 
             // Amended to use webapi and remove local db call & associated error handling 
-
-            reportComments.ReportItem.LastModifiedDate = DateTime.Now;
-            await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
-            return RedirectToAction(nameof(Index));
                 reportComments.ReportItem.LastModifiedDate = DateTime.Now;
                 await _reportsApiClient.UpdateReportItem(id, reportComments.ReportItem);
                 return RedirectToAction(nameof(Index));
-
         }
 
         // GET: NewsReports/Delete/5
@@ -359,7 +311,7 @@ namespace NewsMedia.Controllers
         {
 
             var CurrentUser = User.Identity.Name;
-
+          
 
 
             if (id == null)
@@ -395,6 +347,7 @@ namespace NewsMedia.Controllers
 
 
             temp.CreationEmail = newsReport.CreationEmail;
+            temp.IsPublished = newsReport.IsPublished;  
 
 
 
@@ -424,15 +377,13 @@ namespace NewsMedia.Controllers
             await _reportsApiClient.DeleteReportItem(id);
 
             // BC - delete all related comments
-
             
-
             var reportComments = new ReportComments();
 
             var comments = await _commentsApiClient.GetCommentListByFilter("", id);
 
             reportComments.CommentsList = (List<CommentItem>)comments;
-
+           
             for (int i = 0; i < reportComments.CommentsList.Count; i++)
             {
                 var comment = reportComments.CommentsList[i];
@@ -451,16 +402,6 @@ namespace NewsMedia.Controllers
             return _context.NewsReport.Any(e => e.Id == id);
         }
 
-
-        public List<Publish> GetPublish()
-        {
-            var Publish = new List<Publish>();
-
-            var publish = _context.publish.ToList();
-
-            return publish;
-
-        }
         public List<Category> GetCategories()
         {
             //var Categories = new List<CategoryList>();

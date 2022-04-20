@@ -19,9 +19,7 @@ namespace NewsMedia.Data
 
         public string CreationEmail { get; set; }
 
-        public string Publish { get; set; }
-
-       
+        public Boolean IsPublished { get; set; }
 
     }
 }

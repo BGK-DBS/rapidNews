@@ -1,12 +1,5 @@
-﻿@*@model NewsMedia.Data.NewsReport*@
-<<<<<<< HEAD
-@model NewsMedia.Models.NewsReportViewModel
-=======
-@*@model NewsMedia.Models.NewsReportViewModel*@
-
+﻿
 @model NewsMedia.Models.ReportComments
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
-
 
 @{
     ViewData["Title"] = "Delete";
@@ -46,23 +39,22 @@
             @Html.DisplayFor(model => model.NewsReportItem.CreationDate)
         </dd>
         <dt class = "col-sm-2">
-<<<<<<< HEAD
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-=======
             @Html.DisplayNameFor(model => model.NewsReportItem.CategoryName)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NewsReportItem.CategoryName)
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NewsReportItem.CreationEmail)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NewsReportItem.CreationEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NewsReportItem.IsPublished)
+        </dt>
+        <dd class = "col-sm-10">
+            @(Model.NewsReportItem.IsPublished? "Yes":"No")
         </dd>
     </dl>
 
@@ -110,3 +102,5 @@
 }
     </tbody>
 </table>
+
+

@@ -42,21 +42,9 @@
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <label asp-for="Category" class="control-label"></label>
-                @Html.DropDownListFor(m => m.Category,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
-                
-=======
                 <label asp-for="ReportItem.CategoryId" class="control-label"></label>
                 @Html.DropDownListFor(m => m.ReportItem.CategoryId,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
                 <span asp-validation-for="ReportItem.CategoryId" class="text-danger"></span>
->>>>>>> ccbea2a6401dfbdb157e4d4bcdf0c58c813ae299
-=======
-                <label asp-for="ReportItem.CategoryId" class="control-label"></label>
-                @Html.DropDownListFor(m => m.ReportItem.CategoryId,(ViewBag.CategoriesSelectList as SelectList), "Select Category")
-                <span asp-validation-for="ReportItem.CategoryId" class="text-danger"></span>
->>>>>>> d3c914a01f2075a7a4a6c96e3d4688ea73434d7b
             </div>
            @*<div class="form-group">
                 <label asp-for="CreationEmail" class="control-label"></label>
@@ -64,6 +52,11 @@
                 <span asp-validation-for="CreationEmail" class="text-danger"></span>
             </div>*@
             <input type="hidden" asp-for="ReportItem.CreationEmail" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ReportItem.IsPublished" /> @Html.DisplayNameFor(model => model.ReportItem.IsPublished)
+                </label>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

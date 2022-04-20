@@ -30,6 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreationEmail)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPublished)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -50,6 +53,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreationEmail)
+            </td>
+            <td>
+                @(item.IsPublished? "Yes":"No")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
