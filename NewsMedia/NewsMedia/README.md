@@ -40,7 +40,8 @@ Select NET 6.0 and Authentication Type: Individual Accounts.
         4.1 Validate Category Name by ID  
         4.2 If CategoryID exist brings CategoryName from CategoriesModel  
    
-#
+# Validation for Deleting News Report  
+	
 # Report
 Rapid News Reports Web API
 
