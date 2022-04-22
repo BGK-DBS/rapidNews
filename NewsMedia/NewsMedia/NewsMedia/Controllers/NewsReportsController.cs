@@ -84,8 +84,6 @@ namespace NewsMedia.Controllers
            
         }
 
-
-
 //return View(await _reportsApiClient.GetReportList());
 //await _reportsApiClient.GetReportList();
 

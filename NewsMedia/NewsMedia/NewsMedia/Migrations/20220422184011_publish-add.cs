@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NewsMedia.Migrations
 {
-    public partial class categoryupdateWe : Migration
+    public partial class publishadd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,7 +88,8 @@ namespace NewsMedia.Migrations
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreationEmail = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CreationEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -12,8 +12,8 @@ using NewsMedia.Data;
 namespace NewsMedia.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220422165437_updatemigration1")]
-    partial class updatemigration1
+    [Migration("20220422184011_publish-add")]
+    partial class publishadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
