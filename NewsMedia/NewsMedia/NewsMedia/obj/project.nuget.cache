@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KAcP7wwUzcBvQFKg1B6HwIOiziW+fACQbXUenHSnOs2tuTNhlZI1Vb+8jqM4B9a1C3RHHSebUMsRjQuTnX90MA==",
+  "dgSpecHash": "NLOeM2Fo8Quomv0MKWCK7ou7Vnu32VyNEUDAgZ/vVMVIRWawSLITZmcXIGmBEGSaN6nxwvQLUoLUEEbeaw46SA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+  "projectFilePath": "C:\\Users\\blana\\projectdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\blana\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\blana\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

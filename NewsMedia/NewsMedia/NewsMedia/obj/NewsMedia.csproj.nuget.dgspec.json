@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {}
+    "C:\\Users\\blana\\projectdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {
+    "C:\\Users\\blana\\projectdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+        "projectUniqueName": "C:\\Users\\blana\\projectdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
         "projectName": "NewsMedia",
-        "projectPath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
+        "projectPath": "C:\\Users\\blana\\projectdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\NewsMedia.csproj",
         "packagesPath": "C:\\Users\\blana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\blana\\projectsdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
+        "outputPath": "C:\\Users\\blana\\projectdbs\\rapidNews\\NewsMedia\\NewsMedia\\NewsMedia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\blana\\AppData\\Roaming\\NuGet\\NuGet.Config",
