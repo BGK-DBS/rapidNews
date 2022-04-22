@@ -7,7 +7,7 @@ Select NET 6.0 and Authentication Type: Individual Accounts.
 
 #Create a Model
 
-#Scagolding
+#Scafolding
 
 #Data Validation
 
