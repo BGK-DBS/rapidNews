@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>News Reports</h1>
 
 <p>
      @if (User.Identity.IsAuthenticated)
@@ -17,7 +17,7 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            All/mine: <input type="checkbox" name="SearchAllMine"  value="true" checked="@ViewData["CurrentUser"]"
+            List Only My Reports: <input type="checkbox" name="SearchAllMine"  value="true" checked="@ViewData["CurrentUser"]"
         />
            @* <input type="submit" value="Search" class="btn btn-default" />*@ 
          @*   <a asp-action="Index">Back to Full List</a>*@
@@ -26,7 +26,7 @@
 
     <div class="form-actions no-color">
         <p>*@
-            Find by Category: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            Filter by Category: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
             <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-action="Index">Back to Full List</a>
         </p>

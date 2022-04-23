@@ -10,15 +10,20 @@ namespace NewsMedia.Models
         public int Id { get; set; }
         public string Title { get; set; }
 
+        [Display(Name = "News Report")]
         public string Body { get; set; }
 
-        [Display(Name = "Creation Date")]
+        [Display(Name = "Date Created")]
         public DateTime CreationDate { get; set; }
 
+        [Display(Name = "Category")]
         public string CategoryName { get; set; }
 
+
+        [Display(Name = "Created By")]
         public string? CreationEmail { get; set; }
 
+        [Display(Name = "Published")]
         public Boolean IsPublished { get; set; }
 
     }
