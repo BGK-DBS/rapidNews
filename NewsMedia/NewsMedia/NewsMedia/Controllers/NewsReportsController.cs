@@ -20,6 +20,8 @@ namespace NewsMedia.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ReportsApiClient _reportsApiClient;
         private CommentsApiClient _commentsApiClient;
+        private object newReports;
+        private object NewReports;
 
         public NewsReportsController(ApplicationDbContext context, ReportsApiClient reportsApiClient, CommentsApiClient commentsApiClient)
         {
@@ -29,8 +31,51 @@ namespace NewsMedia.Controllers
         }
 
         // GET: NewsReports
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool searchAllMine, string searchString)
         {
+
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentUser"] = searchAllMine; 
+
+            IEnumerable<NewsReport> newsReports = new List<NewsReport>();
+
+            string user = "";
+            if (searchAllMine)
+            {
+                user = User.Identity.Name;
+                
+            }
+            
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //var category = ((Category)_context.Category.FirstOrDefault(c => c.Name.Contains(searchString)));
+                //int categoryId = category.Id;
+                var categories = _context.Category.Where(c => c.Name.Contains(searchString));
+                foreach (var category in categories)
+                {
+                    int categoryId = category.Id;
+                    var nr = await _reportsApiClient.GetReportListByFilter(user, categoryId);
+                    if (nr != null)
+                        newsReports = newsReports.Union(nr);
+                }
+                
+                //newsReports = await _reportsApiClient.GetReportListByFilter("" ,categoryId);
+
+
+            }
+            else
+            {
+                if (searchAllMine)
+                {
+                    newsReports = await _reportsApiClient.GetReportListByFilter(user, 0);
+                }
+                else
+                {
+                    newsReports = await _reportsApiClient.GetReportList();//brings all news reports
+                }
+            }
+
             // return View(await _context.NewsReport.ToListAsync());
             //var CurrentUser = User.Identity.Name;
 
@@ -39,7 +84,11 @@ namespace NewsMedia.Controllers
 
             // amending to call webapi to get list of reports filtered by the logged in user 
             //var searchCategory = 0;
-            var newsReports = await _reportsApiClient.GetReportList();//brings all news reports
+            //var newsReports = await _reportsApiClient.GetReportList();//brings all news reports
+
+            
+
+
             //var newsReports = await _reportsApiClient.GetReportList();
 
             // commenting out code that uses local db to get list of logged in user 
@@ -70,12 +119,16 @@ namespace NewsMedia.Controllers
                     temp.CategoryName = category.Name;
                 }
 
+               
+
 
                 temp.CreationEmail = nr.CreationEmail;
                 temp.IsPublished = nr.IsPublished;
                 viewModels.Add(temp);
 
             };
+
+            
 
             //return View(await _reportsApiClient.GetReportList());
             //await _reportsApiClient.GetReportList();

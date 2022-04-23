@@ -12,6 +12,7 @@ namespace NewsMedia.Models
 
         public string Body { get; set; }
 
+        [Display(Name = "Creation Date")]
         public DateTime CreationDate { get; set; }
 
         public string CategoryName { get; set; }
