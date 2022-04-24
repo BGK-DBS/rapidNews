@@ -72,14 +72,14 @@ Using Visual Studio:
 
   * Webapi not running locally 
     ![Sample Error Screen for API not running](./images/apiNotRunning.png)
-    Resolution: Run Web Apis - follow links at start in Requirements section 
+    Resolution: The two APIs required for this applicaion are not running, see links in Requirements section above
 
   * Issues with the db which can manifest in errors accessing NewsReports or Comments Index screen
     ![Sample Error message](./images/dbErrorSample.png) 
     Resolution:
     * Delete dbs NewsReport, Reports, Comments
     * Delete all files in the migration folder
-    * Re-run from "Creating Migration Scripts" step
+    * Re-run from "Creating Migration Scripts" step above
 
 
  
