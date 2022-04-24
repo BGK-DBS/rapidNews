@@ -48,7 +48,7 @@ In solutions explorer, select NewsMedia.sln
 * First migration run the following
 
 ```bash
-Add-Migration InitialMigration
+Add-Migration InitialNewsMediaMigration
 ```
 
 * Verify migrations scripts are run successfully and Migrations folder is created
