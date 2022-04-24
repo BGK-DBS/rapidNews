@@ -15,6 +15,11 @@ When using or updating the application, some important points to note:
 4. When a user deletes a report, all comments related to that report are also deleted
 
 
+## Technical
+
+### Architecture Diagram:
+![Architecture Diagram](./images/RapidNewsMedia_Architecture.png)
+
 ## Technical Considerations: 
 * The application has been created using microsofts MVC and WebAPI Frameworks
 * ViewBag was used to convert category id to the category name for display purposes 

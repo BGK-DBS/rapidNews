@@ -28,16 +28,17 @@ After clicking on your account it should then redirect to the forked repo. You s
 
 ![After Forked](./images/after_forked.png)
 
-An alternative is to Open the solution in visual studio by selecting the Green Code button and then clicking on the "open with Visual Studio"
+To open the solution in visual studio, Select the Green Code button and then click on the "open with Visual Studio"
 ![open in visual studio](./images/Open_in_visual_studio.png)
 
 A box will appear asking can Github open in visual studio- continue by selecting this:
 
-![permission to open in visual studio](./images/open_in_visual_studio2.png)
+![permission to open in visual studio](./images/Open_in_visual_studio2.png)
 
-In visual studio,  select clone at the bottom right hand corner
+In visual studio,  select clone at the bottom right hand corner of the screen
 
-In solutions explorer on the right run NewsMedia.sln
+In solutions explorer, select NewsMedia.sln 
+
 
 ## Migrations 
 
